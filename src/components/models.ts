@@ -3,6 +3,6 @@ export interface Todo {
   content: string;
 }
 
-export interface Meta {
-  totalCount: number;
-}
+// export interface Meta {
+//   totalCount: number;
+// }
