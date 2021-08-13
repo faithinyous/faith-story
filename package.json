@@ -12,12 +12,12 @@
     "build": "quasar build"
   },
   "dependencies": {
-    "@quasar/extras": "^1.0.0",
+    "@quasar/extras": "^1.10.10",
     "axios": "^0.21.1",
-    "core-js": "^3.6.5",
-    "quasar": "^2.0.0-beta.1",
-    "vue-class-component": "^8.0.0-rc.1",
-    "vue-i18n": "^9.0.0-beta.0"
+    "core-js": "^3.16.1",
+    "quasar": "^2.0.3",
+    "vue-class-component": "^7.2.6",
+    "vue-i18n": "^8.25.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.13.14",
