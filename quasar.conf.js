@@ -54,9 +54,10 @@ module.exports = configure(function (ctx) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
-      vueRouterMode: 'history', // available values: 'hash', 'history'
+      vueRouterMode: 'hash', // available values: 'hash', 'history'
 
       // transpile: false,
+
       // Add dependencies for transpiling with Babel (Array of string/regex)
       // (from node_modules, which are by default not transpiled).
       // Applies only if "transpile" is set to true.
@@ -92,7 +93,7 @@ module.exports = configure(function (ctx) {
       // iconSet: 'material-icons', // Quasar icon set
       // lang: 'en-US', // Quasar language pack
 
-      // For special cases outside of where the auto-import stategy can have an impact
+      // For special cases outside of where the auto-import strategy can have an impact
       // (like functional components as one of the examples),
       // you can manually specify Quasar components/directives to be available everywhere:
       //
@@ -142,9 +143,9 @@ module.exports = configure(function (ctx) {
       },
 
       manifest: {
-        name: 'Faith Story',
-        short_name: 'Faith Story',
-        description: 'Faith biography',
+        name: 'Quasar App',
+        short_name: 'Quasar App',
+        description: 'A Quasar Framework app',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',

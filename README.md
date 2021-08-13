@@ -1,6 +1,6 @@
-# Faith Story (faith-story)
+# Quasar App (faith-story)
 
-Faith biography
+A Quasar Framework app
 
 ## Install the dependencies
 ```bash

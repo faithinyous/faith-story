@@ -2,53 +2,44 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <!--        <q-btn-->
-        <!--          flat-->
-        <!--          dense-->
-        <!--          round-->
-        <!--          icon="menu"-->
-        <!--          aria-label="Menu"-->
-        <!--          @click="toggleLeftDrawer"-->
-        <!--        />-->
+        <q-btn
+          flat
+          dense
+          round
+          icon="menu"
+          aria-label="Menu"
+          @click="toggleLeftDrawer"
+        />
 
-        <q-toolbar-title class="row">
-          <div v-for="item in topMenu" :key="item" class="q-mx-md text-bold">
-            <q-btn flat size="lg" @click="pushToPage(item)">
-              {{ item.title }}
-            </q-btn>
-          </div>
+        <q-toolbar-title>
+          Quasar App
         </q-toolbar-title>
 
-        <div
-          class="text-secondary text-h4 text-bold"
-          style="text-shadow: 2px 2px #ce8123"
-        >
-          Apiporn Simapornchai
-        </div>
+        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
-    <!--    <q-drawer-->
-    <!--      v-model="leftDrawerOpen"-->
-    <!--      show-if-above-->
-    <!--      bordered-->
-    <!--      class="bg-grey-1"-->
-    <!--    >-->
-    <!--      <q-list>-->
-    <!--        <q-item-label-->
-    <!--          header-->
-    <!--          class="text-grey-8"-->
-    <!--        >-->
-    <!--          Essential Links-->
-    <!--        </q-item-label>-->
+    <q-drawer
+      v-model="leftDrawerOpen"
+      show-if-above
+      bordered
+      class="bg-grey-1"
+    >
+      <q-list>
+        <q-item-label
+          header
+          class="text-grey-8"
+        >
+          Essential Links
+        </q-item-label>
 
-    <!--        <EssentialLink-->
-    <!--          v-for="link in essentialLinks"-->
-    <!--          :key="link.title"-->
-    <!--          v-bind="link"-->
-    <!--        />-->
-    <!--      </q-list>-->
-    <!--    </q-drawer>-->
+        <EssentialLink
+          v-for="link in essentialLinks"
+          :key="link.title"
+          v-bind="link"
+        />
+      </q-list>
+    </q-drawer>
 
     <q-page-container>
       <router-view />
@@ -57,57 +48,63 @@
 </template>
 
 <script lang="ts">
-import EssentialLink from 'components/EssentialLink.vue';
+import EssentialLink from 'components/EssentialLink.vue'
 
-import { Vue, Options } from 'vue-class-component';
-interface MenuData {
-  title: string;
-  caption: string;
-  link: string;
-  newPage?: boolean | false;
-}
+const linksList = [
+  {
+    title: 'Docs',
+    caption: 'quasar.dev',
+    icon: 'school',
+    link: 'https://quasar.dev'
+  },
+  {
+    title: 'Github',
+    caption: 'github.com/quasarframework',
+    icon: 'code',
+    link: 'https://github.com/quasarframework'
+  },
+  {
+    title: 'Discord Chat Channel',
+    caption: 'chat.quasar.dev',
+    icon: 'chat',
+    link: 'https://chat.quasar.dev'
+  },
+  {
+    title: 'Forum',
+    caption: 'forum.quasar.dev',
+    icon: 'record_voice_over',
+    link: 'https://forum.quasar.dev'
+  },
+  {
+    title: 'Twitter',
+    caption: '@quasarframework',
+    icon: 'rss_feed',
+    link: 'https://twitter.quasar.dev'
+  },
+  {
+    title: 'Facebook',
+    caption: '@QuasarFramework',
+    icon: 'public',
+    link: 'https://facebook.quasar.dev'
+  },
+  {
+    title: 'Quasar Awesome',
+    caption: 'Community Quasar projects',
+    icon: 'favorite',
+    link: 'https://awesome.quasar.dev'
+  }
+];
+
+import { Vue, Options } from 'vue-class-component'
+
 @Options({
-  components: { EssentialLink },
+  components: { EssentialLink }
 })
 export default class MainLayout extends Vue {
-  topMenu = [
-    {
-      title: 'Home',
-      caption: 'Home',
-      link: '/',
-    },
-    {
-      title: 'Info',
-      caption: 'Info',
-      link: '/info',
-    },
-    {
-      title: 'Bio',
-      caption: 'Bio',
-      link: '/bio',
-    },
-    {
-      title: 'LinkedIn',
-      caption: 'LinkedIn',
-      link: '/',
-      newPage: true,
-    },
-    {
-      title: 'Contact',
-      caption: 'Contact',
-      link: '/contact',
-    },
-  ] as MenuData[];
   leftDrawerOpen = false;
-  async pushToPage(data: MenuData) {
-    if (data.newPage) {
-    } else {
-      console.log(data.link, 'data.link');
-      await this.$router.push({ path: data.link });
-    }
-  }
-  toggleLeftDrawer() {
-    this.leftDrawerOpen = !this.leftDrawerOpen;
+  essentialLinks = linksList;
+  toggleLeftDrawer () {
+    this.leftDrawerOpen = !this.leftDrawerOpen
   }
 }
 </script>

@@ -32,6 +32,5 @@ yarn-error.log*
 *.njsproj
 *.sln
 yarn.lock
-yarn-error.log
-.quasar
 .vscode
+yarn-error.log
