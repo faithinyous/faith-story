@@ -2,44 +2,41 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
+        <div>data</div>
+        <!--        <q-btn-->
+        <!--          flat-->
+        <!--          dense-->
+        <!--          round-->
+        <!--          icon="menu"-->
+        <!--          aria-label="Menu"-->
+        <!--          @click="toggleLeftDrawer"-->
+        <!--        />-->
 
-        <q-toolbar-title>
-          Quasar App
+        <q-toolbar-title class="row">
+          <div v-for="item in linksList" :key="item" class="q-mx-md text-bold">
+            <q-btn flat size="lg" @click="pushToPage(item)">
+              {{ item.title }}
+            </q-btn>
+          </div>
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <!--        <div>Quasar v{{ $q.version }}</div>-->
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-      class="bg-grey-1"
-    >
-      <q-list>
-        <q-item-label
-          header
-          class="text-grey-8"
-        >
-          Essential Links
-        </q-item-label>
+    <!--    <q-drawer v-model="leftDrawerOpen" show-if-above bordered class="bg-grey-1">-->
+    <!--      <q-list>-->
+    <!--        <q-item-label header class="text-grey-8">-->
+    <!--          Essential Links-->
+    <!--        </q-item-label>-->
 
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
-    </q-drawer>
+    <!--        <EssentialLink-->
+    <!--          v-for="link in essentialLinks"-->
+    <!--          :key="link.title"-->
+    <!--          v-bind="link"-->
+    <!--        />-->
+    <!--      </q-list>-->
+    <!--    </q-drawer>-->
 
     <q-page-container>
       <router-view />
@@ -48,63 +45,60 @@
 </template>
 
 <script lang="ts">
-import EssentialLink from 'components/EssentialLink.vue'
+import EssentialLink from 'components/EssentialLink.vue';
 
-const linksList = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-];
-
-import { Vue, Options } from 'vue-class-component'
-
+import { Vue, Options } from 'vue-class-component';
+interface MenuData {
+  title: string;
+  caption: string;
+  link: string;
+  newPage?: boolean | false;
+}
 @Options({
-  components: { EssentialLink }
+  components: { EssentialLink },
 })
 export default class MainLayout extends Vue {
   leftDrawerOpen = false;
-  essentialLinks = linksList;
-  toggleLeftDrawer () {
-    this.leftDrawerOpen = !this.leftDrawerOpen
+
+  linksList = [
+    {
+      title: 'Home',
+      caption: 'Home',
+      link: '/',
+    },
+    {
+      title: 'Info',
+      caption: 'Info',
+      link: '/info',
+    },
+    {
+      title: 'Bio',
+      caption: 'Bio',
+      link: '/bio',
+    },
+    {
+      title: 'LinkedIn',
+      caption: 'LinkedIn',
+      link: 'https://www.linkedin.com/in/faithinyou/',
+      newPage: true,
+    },
+    {
+      title: 'Contact',
+      caption: 'Contact',
+      link: '/contact',
+    },
+  ] as MenuData[];
+
+  toggleLeftDrawer() {
+    this.leftDrawerOpen = !this.leftDrawerOpen;
+  }
+  async pushToPage(data: MenuData) {
+    if (data.newPage) {
+      window.open(data.link, '_blank');
+    } else {
+      console.log(data.link, 'data.link');
+      await this.$router.push({ path: data.link });
+    }
   }
 }
 </script>
